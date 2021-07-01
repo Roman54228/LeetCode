@@ -1,0 +1,14 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_ = start = 0
+        visited_elems = {}
+        for i in range(len(s)):
+            if s[i] in visited_elems and start <= visited_elems[s[i]]:
+                start = visited_elems[s[i]] + 1 #Новую подстроку будем искать 
+                                                #начиная с символа следующего за первой повторкой, 
+                                                #если начать с самой повторки, то тогда не получится уловить это самое повторение
+            else:
+                max_ = max(max_, i - start + 1)
+            visited_elems[s[i]] = i
+        return max_
+                
