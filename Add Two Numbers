@@ -1,0 +1,13 @@
+def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        def toint(node):
+            if node is not None:
+                return node.val + 10 * toint(node.next)
+            else: 
+                return 0
+        res = toint(l1) + toint(l2)
+        def tolist(n):
+            node = ListNode(n % 10)
+            if n > 9:
+                node.next = tolist(n // 10)
+            return node
+        return tolist(res)
